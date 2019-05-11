@@ -3,7 +3,7 @@
 
 ----
 
-I added new feature ActionType by coskuncinar
+Added new feature the ActionType by coskuncinar
 
 ```c#
 [DisplayName("Hide on Role List"), ActionType(ActionHide = true)]
