@@ -1,7 +1,9 @@
 # Dynamic Role-Based Authorization in ASP.NET Core 2.0
 
 
-I added new feature ActionType
+----
+
+I added new feature ActionType by coskuncinar
 
 ```c#
 [DisplayName("Hide on Role List"), ActionType(ActionHide = true)]
@@ -10,7 +12,8 @@ public string HideMethod()
 	return "I'm invisible";
 }
 ```
- 
+
+-----
  
 You already know how role-based authorization wokrs in ASP.NET Core.
 
