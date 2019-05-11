@@ -1,4 +1,5 @@
-﻿using DynamicRoleBasedAuthorization.Models;
+﻿using DynamicRoleBasedAuthorization.Extensions;
+using DynamicRoleBasedAuthorization.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Controllers;
@@ -52,12 +53,19 @@ namespace DynamicRoleBasedAuthorization.Services
                 {
                     var methodInfo = descriptor.MethodInfo;
                     if (IsProtectedAction(controllerTypeInfo, methodInfo))
-                        actions.Add(new MvcActionInfo
+                    {
+                        var actionInfo = new MvcActionInfo()
                         {
                             ControllerId = currentController.Id,
                             Name = descriptor.ActionName,
                             DisplayName = methodInfo.GetCustomAttribute<DisplayNameAttribute>()?.DisplayName,
-                        });
+                            ActionHide = methodInfo.GetCustomAttribute<ActionTypeAttribute>()?.ActionHide ?? false,
+                        };
+                        if (!actionInfo.ActionHide)
+                        {
+                            actions.Add(actionInfo);
+                        }
+                    }
                 }
 
                 if (actions.Any())

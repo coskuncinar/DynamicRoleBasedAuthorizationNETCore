@@ -1,4 +1,5 @@
 ﻿using DynamicRoleBasedAuthorization.Data;
+using DynamicRoleBasedAuthorization.Extensions;
 using DynamicRoleBasedAuthorization.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -104,6 +105,12 @@ namespace DynamicRoleBasedAuthorization.Controllers
             await _userManager.AddToRolesAsync(user, viewModel.Roles);
 
             return RedirectToAction("Index");
+        }
+
+        [DisplayName("Hide on Role List"), ActionType(ActionHide = true)]
+        public string HideMethod()
+        {
+            return "I'm invisible";
         }
     }
 }
